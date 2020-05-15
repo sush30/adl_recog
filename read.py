@@ -28,7 +28,7 @@ print(df.shape[0])
 #df["end_time"]=df["end_time"].astype(str)
 
 df.loc[:,"date"]=pd.to_datetime(df["date"])
-df.loc[:,"time"]=pd.to_datetime(df["time"]).dt.time
+df.loc[:,"time"]=pd.to_datetime(df["time"])
 
 
 
@@ -218,6 +218,11 @@ df11.drop(['T001', 'T002', 'T003', 'T004', 'T005', 'P001'], axis=1, inplace=True
 print("---time taken to complete this file is =   %s seconds ---" % (time.time() - start_tim))
 print(df11.head())
 df11.to_csv(out_fl_nam)
+df11['date']=pd.to_datetime(df11['date']).dt.date
+df11['start_time']=pd.to_datetime(df11['start_time']).dt.time
+df11['end_time']=pd.to_datetime(df11['end_time']).dt.time
 
+df11.drop(['ENTERHOME'],axis=1,inplace=True)
+df11.to_csv("aruba2.csv")
 
 
